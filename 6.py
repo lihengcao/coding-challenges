@@ -1,3 +1,5 @@
+# Problem 6
+
 # the following pattern seems to hold
 
 # (a+b)^2 - (a^2 + b^2)
