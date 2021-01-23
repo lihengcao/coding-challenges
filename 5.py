@@ -1,7 +1,5 @@
 # smallest multiple
 
-from functools import reduce
-
 up_to: int = 20
 
 def primeFactors(n: int)-> dict[int, int]:
