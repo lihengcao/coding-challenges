@@ -1,1 +1,3 @@
 # collatz sequence
+
+# completed elsewhere

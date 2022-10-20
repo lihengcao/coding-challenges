@@ -1,10 +1,5 @@
 import math
 
-
-def triangle_number(n: int) -> int:
-    return n * (n + 1) // 2
-
-
 def factors(n: int) -> int:
     s = int(math.sqrt(n))
     ans = 3 if n == s * s else 2
