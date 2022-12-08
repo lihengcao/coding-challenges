@@ -1,74 +1,68 @@
-from collections import defaultdict
+from math import inf
 
 
-day = 7
+day = 8
 filename = f"{day}.txt"
 # filename = f"{day}s.txt"
 
 
-def first() -> int:
-    folders = defaultdict(int)
-    path = ['/']
-    
+def first() -> int:   
     with open(filename, "r") as f:
-        for l in f.readlines():
-            l = l.strip().split(' ')
+        grid = [[int(n) for n in l.strip()] for l in f.readlines()]
 
-            if l[0] == "$":
-                if l[1] == "cd":
-                    if l[2] == "/":
-                        path = ['/']
-                    elif l[2] == "..":
-                        path.pop()
-                    else:
-                        path.append(l[2])
-            elif l[0].isnumeric():
-                # print(f"{l[0]=}")
-                n = int(l[0])
-                p = ""  # folders with the same name but in different directories
-                for f in path:
-                    p += f
-                    folders[p] += n
+    m, n = len(grid), len(grid[0])
+    visible = set()
+    
+    for startx, starty, endx, endy, dx, dy in ((0, 0, m, n, 1, 1), (m - 1, n - 1, -1, -1, -1, -1),):
+        
 
-    # print(folders)
-    return sum(n for n in folders.values() if n <= 100_000)
+        for i in range(startx, endx, dx):
+            tallest = -inf
+            for j in range(starty, endy, dy):
+                if grid[i][j] > tallest:
+                    visible.add((i, j,))
+                    tallest = grid[i][j]
+
+                pass
+                
+        
+        for j in range(starty, endy, dy):
+            tallest = -inf
+            for i in range(startx, endx, dx):
+                if grid[i][j] > tallest:
+                    visible.add((i, j,))
+                    tallest = grid[i][j]
+
+    return len(visible)
 
 def second() -> int:
-    folders = defaultdict(int)
-    path = ['/']
-
-    target_free_space = 30000000
-    device_total_space = 70000000
-    
     with open(filename, "r") as f:
-        for l in f.readlines():
-            l = l.strip().split(' ')
+        grid = [[int(n) for n in l.strip()] for l in f.readlines()]
 
-            if l[0] == "$":
-                if l[1] == "cd":
-                    if l[2] == "/":
-                        path = ['/']
-                    elif l[2] == "..":
-                        path.pop()
-                    else:
-                        path.append(l[2])
-            elif l[0].isnumeric():
-                # print(f"{l[0]=}")
-                n = int(l[0])
-                p = ""  # folders with the same name but in different directories
-                for f in path:
-                    p += f
-                    folders[p] += n
+    m, n = len(grid), len(grid[0])
+    score = 0
+    for x in range(m):
+        for y in range(n):
+            cur = 1
 
-    current_free_space = device_total_space - folders["/"]
-    looking_for = target_free_space - current_free_space
-    
-    s = folders["/"]
-    for k, v in folders.items():
-        if looking_for <= v < s:
-            s = v
+            for dx, dy in ((0, 1), (1, 0), (-1, 0), (0, -1),):
+                direc = 0
+                i, j = x + dx, y + dy
 
-    return s
+                while 0 <= i < m and 0 <= j < n:
+                    if grid[x][y] > grid[i][j]:
+                        direc += 1
+                    elif grid[x][y] <= grid[i][j]:
+                        direc += 1
+                        break
+
+                    i += dx
+                    j += dy
+                cur *= direc
+
+            score = max(score, cur)
+
+    return score
 
 
 if __name__ == '__main__':
