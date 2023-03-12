@@ -2,7 +2,7 @@
 
 from math import inf
 
-M = [None] * 80
+M: list[list[int]] = [[0] for _ in range(80)]
 
 with open("files/81.txt", "r") as f:
     # in theory not good to load everything into memory, but it works
@@ -10,7 +10,7 @@ with open("files/81.txt", "r") as f:
         l = f.readline()
         M[i] = [int(e) for e in l.split(',')]
 
-cache = [[None] * 80 for _ in range(80)]
+cache = [[0] * 80 for _ in range(80)]
 cache[-1][-1] = M[-1][-1]
 
 
