@@ -14,7 +14,7 @@ def find_range(map_: list[tuple[int, int, int]], num: int) -> Optional[tuple[int
     for i in range(len(map_) - 1, -1, -1):
         range_ = map_[i]
 
-        if range_[1] <= num <= range_[1] + range_[2]:
+        if range_[1] <= num < range_[1] + range_[2]:
             return range_
 
     return None
@@ -93,12 +93,44 @@ def p2() -> None:
     if DEBUG:
         print(seeds)
         [print(map_) for map_ in maps]
+        print()
 
-    best = inf
+    current_ranges = seeds
 
-    print(seeds)
+    for map_ in maps:
+        new: list[tuple[int, int]] = []
 
-    ...
+        if DEBUG:
+            print(current_ranges, map_)
+
+        for start, c_len in current_ranges:
+            end = start + c_len
+
+            while start < end:
+                range_ = find_range(map_, start)
+                if DEBUG:
+                    print(f"found range:{start, end} {range_}")
+                if range_ is None:
+                    new.append((start, end - start))
+                    break
+
+                d_start, s_start, r_len = range_
+                s_end = s_start + r_len
+
+                # i think the first two conditions might be guaranteed
+                if s_start <= start < end <= s_end:
+                    new.append((start - s_start + d_start, end - start))
+                    break
+
+                assert s_start <= start < s_end <= end
+                new_range_len = s_end - start
+                new.append((start - s_start + d_start, new_range_len))
+
+                start = s_end
+
+        current_ranges = new
+
+    print(min(r[0] for r in current_ranges))
 
 
 p2()
