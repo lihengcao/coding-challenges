@@ -11,11 +11,19 @@ def calc(dists: list[int], times: list[int], query: int) -> int:
     dist = dists[ind] - dists[ind - 1]
     time = times[ind] - times[ind - 1]
 
-    speed = dist/time
+    # speed = dist/time
 
     partial_dist = query - dists[ind - 1]
 
-    return times[ind - 1] + int(partial_dist/speed)
+    # return times[ind - 1] + int(partial_dist/speed)
+
+
+    # After the contest: looks like a rounding issue.
+    # Maybe multiplying before dividing makes it more precise?
+
+    # Wow. It was a rounding issue that could be solved by doing this:
+
+    return times[ind- 1] + int(partial_dist * time / dist)
 
 def main():
     for _ in range(int(input())):
