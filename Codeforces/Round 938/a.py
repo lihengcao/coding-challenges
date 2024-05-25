@@ -1,5 +1,5 @@
 for _ in range(int(input())):
-    n, a, b = [int(e) for e in input().split(' ')]
+    n, a, b = [int(e) for e in input().split(" ")]
 
     if n % 2 == 0:
         print(min(n // 2 * b, n * a))

@@ -1,5 +1,5 @@
-from typing import Optional
 from math import inf
+from typing import Optional
 
 INPUT = "input.txt"
 DEBUG = False
@@ -8,7 +8,9 @@ DEBUG = False
 # DEBUG = True
 
 
-def find_range(map_: list[tuple[int, int, int]], num: int) -> Optional[tuple[int, int, int]]:
+def find_range(
+    map_: list[tuple[int, int, int]], num: int
+) -> Optional[tuple[int, int, int]]:
     # small enough that linear search is fine ...
 
     for i in range(len(map_) - 1, -1, -1):
@@ -18,6 +20,7 @@ def find_range(map_: list[tuple[int, int, int]], num: int) -> Optional[tuple[int
             return range_
 
     return None
+
 
 def conv_seed_to_location(maps: list[list[tuple[int, int, int]]], seed: int) -> int:
     cur = seed
@@ -38,20 +41,20 @@ def p1() -> None:
     with open(INPUT, "r", encoding="utf-8") as f:
         lines = f.read().splitlines()
 
-        seeds = [int(e) for e in lines[0].split(':')[1].split(' ') if e != '']
-        maps:list[list[tuple[int, int, int]]] = [[]]
+        seeds = [int(e) for e in lines[0].split(":")[1].split(" ") if e != ""]
+        maps: list[list[tuple[int, int, int]]] = [[]]
 
         i_line = 3
 
         while i_line < len(lines):
             line = lines[i_line]
-            if line == '':
+            if line == "":
                 maps[-1].sort(key=lambda t: t[1])
                 maps.append([])
                 i_line += 2
                 continue
 
-            tup = tuple(int(e) for e in line.split(' ') if e != '')
+            tup = tuple(int(e) for e in line.split(" ") if e != "")
             assert len(tup) == 3
             maps[-1].append(tup)
 
@@ -70,21 +73,21 @@ def p2() -> None:
     with open(INPUT, "r", encoding="utf-8") as f:
         lines = f.read().splitlines()
 
-        seeds_raw = [int(e) for e in lines[0].split(':')[1].split(' ') if e != '']
+        seeds_raw = [int(e) for e in lines[0].split(":")[1].split(" ") if e != ""]
         seeds = [(seeds_raw[i], seeds_raw[i + 1]) for i in range(0, len(seeds_raw), 2)]
-        maps:list[list[tuple[int, int, int]]] = [[]]
+        maps: list[list[tuple[int, int, int]]] = [[]]
 
         i_line = 3
 
         while i_line < len(lines):
             line = lines[i_line]
-            if line == '':
+            if line == "":
                 maps[-1].sort(key=lambda t: t[1])
                 maps.append([])
                 i_line += 2
                 continue
 
-            tup = tuple(int(e) for e in line.split(' ') if e != '')
+            tup = tuple(int(e) for e in line.split(" ") if e != "")
             assert len(tup) == 3
             maps[-1].append(tup)
 

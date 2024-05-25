@@ -7,16 +7,20 @@ def check_is_symbol(lines: list[str], i: int, j: int) -> bool:
     m, n = len(lines), len(lines[0])
     if not (0 <= i < m and 0 <= j < n):
         return False
-    
+
     c = lines[i][j]
-    return not (c.isdigit and c == '.')
+    return not (c.isdigit and c == ".")
 
 
 def maybe_get_num(lines: list[str], i: int, j: int) -> int:
     # check left
     num = 0
     n = len(lines[0])
-    symbol_adjacent = check_is_symbol(lines, i - 1, j - 1) or check_is_symbol(lines, i, j - 1) or check_is_symbol(lines, i + 1, j - 1)
+    symbol_adjacent = (
+        check_is_symbol(lines, i - 1, j - 1)
+        or check_is_symbol(lines, i, j - 1)
+        or check_is_symbol(lines, i + 1, j - 1)
+    )
 
     ind = j
 
@@ -25,13 +29,19 @@ def maybe_get_num(lines: list[str], i: int, j: int) -> int:
         num = 10 * num + int(c)
 
         if not symbol_adjacent:
-            symbol_adjacent = check_is_symbol(lines, i - 1, ind) or check_is_symbol(lines, i + 1, ind)
+            symbol_adjacent = check_is_symbol(lines, i - 1, ind) or check_is_symbol(
+                lines, i + 1, ind
+            )
 
         ind += 1
 
     # check right
     if not symbol_adjacent:
-            symbol_adjacent = check_is_symbol(lines, i - 1, ind) or check_is_symbol(lines, i, ind) or check_is_symbol(lines, i + 1, ind)
+        symbol_adjacent = (
+            check_is_symbol(lines, i - 1, ind)
+            or check_is_symbol(lines, i, ind)
+            or check_is_symbol(lines, i + 1, ind)
+        )
 
     if DEBUG and symbol_adjacent:
         print(i, j, num)
@@ -61,16 +71,7 @@ def p1() -> None:
     print(ans)
 
 
-ADJACENT = (
-    (1, 0),
-    (1, 1),
-    (0, 1),
-    (-1, 1),
-    (-1, 0),
-    (-1, -1),
-    (0, -1),
-    (1, -1)
-)
+ADJACENT = ((1, 0), (1, 1), (0, 1), (-1, 1), (-1, 0), (-1, -1), (0, -1), (1, -1))
 
 
 def maybe_get_gear_ratio(lines: list[str], i: int, j: int) -> int:
@@ -92,7 +93,6 @@ def maybe_get_gear_ratio(lines: list[str], i: int, j: int) -> int:
             num = 10 * num + int(lines[x][k])
 
         return num
-
 
     candidates = set()
     for di, dj in ADJACENT:
@@ -131,7 +131,7 @@ def p2() -> None:
 
         for i, line in enumerate(lines):
             for j, char in enumerate(line):
-                if not char == '*':
+                if not char == "*":
                     continue
 
                 ans += maybe_get_gear_ratio(lines, i, j)

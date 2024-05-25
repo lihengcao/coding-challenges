@@ -6,10 +6,11 @@ DEBUG = False
 # INPUT = "sample.txt"
 DEBUG = True
 
+
 def extrapolate(vals: list[int], backwards=False) -> int:
     if not vals or all(v == 0 for v in vals):
         return 0
-    
+
     diffs = [vals[i + 1] - vals[i] for i in range(len(vals) - 1)]
 
     if backwards:
@@ -17,11 +18,12 @@ def extrapolate(vals: list[int], backwards=False) -> int:
 
     return vals[-1] + extrapolate(diffs)
 
+
 def p1() -> None:
     with open(INPUT, "r", encoding="utf-8") as f:
         lines = f.read().splitlines()
 
-    sequences = [[int(e) for e in line.split(' ') if e != ''] for line in lines]
+    sequences = [[int(e) for e in line.split(" ") if e != ""] for line in lines]
 
     if DEBUG:
         print(sequences)
@@ -38,7 +40,7 @@ def p2() -> None:
     with open(INPUT, "r", encoding="utf-8") as f:
         lines = f.read().splitlines()
 
-    sequences = [[int(e) for e in line.split(' ') if e != ''] for line in lines]
+    sequences = [[int(e) for e in line.split(" ") if e != ""] for line in lines]
 
     if DEBUG:
         print(sequences)
@@ -49,5 +51,6 @@ def p2() -> None:
         extrapolated_values += extrapolate(seq, True)
 
     print(extrapolated_values)
+
 
 p2()

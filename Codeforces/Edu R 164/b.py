@@ -1,6 +1,6 @@
 for _ in range(int(input())):
     _ = input()
-    a = [int(e) for e in input().split(' ')]
+    a = [int(e) for e in input().split(" ")]
 
     l = 0  # makes an edge case easier
     while l < len(a) - 1:

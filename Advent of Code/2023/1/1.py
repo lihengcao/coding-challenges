@@ -1,6 +1,7 @@
 INPUT = "1.txt"
 DEBUG = False
 
+
 def day1() -> None:
     ans = 0
     with open(INPUT, "r") as f:
@@ -31,6 +32,7 @@ conversions: dict[str, int] = {
     "eight": 8,
     "nine": 9,
 }
+
 
 def conv_to_int(line: str, ind: int, beginning: bool) -> int:
     for text, num in conversions.items():
@@ -86,7 +88,7 @@ def day2() -> None:
                     ans += c
                     break
             if DEBUG:
-                print('---')
+                print("---")
 
     print(ans)
 

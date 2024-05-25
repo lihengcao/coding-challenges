@@ -1,7 +1,7 @@
 for _ in range(int(input())):
-    n, k = [int(e) for e in input().split(' ')]
+    n, k = [int(e) for e in input().split(" ")]
 
-    arr = [int(e) for e in input().split(' ')]
+    arr = [int(e) for e in input().split(" ")]
     l, r = 0, len(arr) - 1
 
     while k and l < r and k >= 2 * min(arr[l], arr[r]):

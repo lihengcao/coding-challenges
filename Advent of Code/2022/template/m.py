@@ -1,4 +1,4 @@
-# 
+#
 
 
 filename = "input.txt"
@@ -17,6 +17,6 @@ def second() -> int:
     return 0
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print("first", first())
     # print("second", second())

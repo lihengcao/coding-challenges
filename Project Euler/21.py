@@ -2,15 +2,17 @@
 
 import math
 
+
 def sum_factors(n: int) -> int:
     s = int(math.sqrt(n))
     ans = 1 + s if n == s * s else 1
 
     for d in range(2, int(s)):
         if n % d == 0:
-            ans += d + n//d
+            ans += d + n // d
 
     return ans
+
 
 sums = [None] * (10000 + 1)
 
@@ -30,7 +32,6 @@ for i, n in enumerate(sums):
     if n < len(sums) and sums[n] == i:
         ans += sums[n] + n
         sums[n] = None
-
 
 
 print(ans)

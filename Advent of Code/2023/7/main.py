@@ -1,6 +1,6 @@
+from collections import Counter
 from math import sqrt
 from typing import Optional
-from collections import Counter
 
 INPUT = "input.txt"
 DEBUG = False
@@ -30,19 +30,19 @@ def get_hand_rank(hand: str | list[str]) -> int:
 
 
 card_ranks = {
-    'A': 'a',
-    'K': 'b',
-    'Q': 'c',
-    'J': 'd',
-    'T': 'e',
-    '9': 'f',
-    '8': 'g',
-    '7': 'h',
-    '6': 'i',
-    '5': 'j',
-    '4': 'k',
-    '3': 'l',
-    '2': 'm'
+    "A": "a",
+    "K": "b",
+    "Q": "c",
+    "J": "d",
+    "T": "e",
+    "9": "f",
+    "8": "g",
+    "7": "h",
+    "6": "i",
+    "5": "j",
+    "4": "k",
+    "3": "l",
+    "2": "m",
 }
 
 
@@ -54,10 +54,11 @@ def p1() -> None:
     with open(INPUT, "r", encoding="utf-8") as f:
         lines = f.read().splitlines()
 
-    cards_and_bids = [((t := line.split(' '))[0], int(t[1])) for line in lines]
+    cards_and_bids = [((t := line.split(" "))[0], int(t[1])) for line in lines]
 
-    sort_key_and_bids = sorted([(get_sort_key(t[0]), t[1])
-                               for t in cards_and_bids], reverse=True)
+    sort_key_and_bids = sorted(
+        [(get_sort_key(t[0]), t[1]) for t in cards_and_bids], reverse=True
+    )
 
     if DEBUG:
         print(cards_and_bids)
@@ -73,10 +74,10 @@ def p1() -> None:
 def get_hand_rank2(hand: str) -> int:
     counts = Counter(hand)
 
-    if 'J' not in counts:
+    if "J" not in counts:
         return get_hand_rank(hand)
 
-    return get_hand_rank2_helper([c for c in hand if c != 'J'])
+    return get_hand_rank2_helper([c for c in hand if c != "J"])
 
 
 def get_hand_rank2_helper(cards: list[str]) -> int:
@@ -94,19 +95,19 @@ def get_hand_rank2_helper(cards: list[str]) -> int:
 
 
 card_ranks2 = {
-    'A': 'a',
-    'K': 'b',
-    'Q': 'c',
-    'T': 'e',
-    '9': 'f',
-    '8': 'g',
-    '7': 'h',
-    '6': 'i',
-    '5': 'j',
-    '4': 'k',
-    '3': 'l',
-    '2': 'm',
-    'J': 'n',
+    "A": "a",
+    "K": "b",
+    "Q": "c",
+    "T": "e",
+    "9": "f",
+    "8": "g",
+    "7": "h",
+    "6": "i",
+    "5": "j",
+    "4": "k",
+    "3": "l",
+    "2": "m",
+    "J": "n",
 }
 
 
@@ -118,10 +119,11 @@ def p2() -> None:
     with open(INPUT, "r", encoding="utf-8") as f:
         lines = f.read().splitlines()
 
-    cards_and_bids = [((t := line.split(' '))[0], int(t[1])) for line in lines]
+    cards_and_bids = [((t := line.split(" "))[0], int(t[1])) for line in lines]
 
-    sort_key_and_bids = sorted([(get_sort_key2(t[0]), t[1])
-                               for t in cards_and_bids], reverse=True)
+    sort_key_and_bids = sorted(
+        [(get_sort_key2(t[0]), t[1]) for t in cards_and_bids], reverse=True
+    )
 
     if DEBUG:
         print(cards_and_bids)

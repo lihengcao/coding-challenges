@@ -1,4 +1,5 @@
 """Round 944"""
+
 for _ in range(int(input())):
     word = list(input())
 

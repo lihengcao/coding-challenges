@@ -1,9 +1,9 @@
 # sorting packets
 
-from my_functions import deserialize_nested_list, compare_packets, ComparisonEnum
 # from ast import literal_eval
 from functools import cmp_to_key
 
+from my_functions import ComparisonEnum, compare_packets, deserialize_nested_list
 
 filename = "input.txt"
 # filename = "sample.txt"
@@ -14,12 +14,17 @@ with open(filename, "r") as f:
     # packets = [deserialize_nested_list(l.strip()) == literal_eval(l.strip()) for l in f.readlines() if l != '\n']
     # print(all(packets))
 
-    packets = [deserialize_nested_list(line.strip())
-               for line in f.readlines() if line != '\n']
+    packets = [
+        deserialize_nested_list(line.strip()) for line in f.readlines() if line != "\n"
+    ]
 
 
 def first() -> int:
-    return sum(i//2 + 1 for i in range(0, len(packets), 2) if compare_packets(packets[i], packets[i + 1]) is ComparisonEnum.RIGHT)
+    return sum(
+        i // 2 + 1
+        for i in range(0, len(packets), 2)
+        if compare_packets(packets[i], packets[i + 1]) is ComparisonEnum.RIGHT
+    )
 
 
 def second() -> int:
@@ -28,6 +33,6 @@ def second() -> int:
     return d1 * d2
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(first())
     print(second())

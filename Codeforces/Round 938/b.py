@@ -1,9 +1,9 @@
 from collections import Counter
 
 for _ in range(int(input())):
-    n, c, d = [int(e) for e in input().split(' ')]
+    n, c, d = [int(e) for e in input().split(" ")]
 
-    arr = sorted([int(e) for e in input().split(' ')])
+    arr = sorted([int(e) for e in input().split(" ")])
     arr = Counter(arr)
 
     done = False

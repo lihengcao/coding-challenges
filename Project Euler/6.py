@@ -12,6 +12,7 @@
 # = 2(ab + ac + ad + bc + bd + cd)
 # = 2 * (a*(b+c+d) + b*(c+d) + c*d)
 
+
 def f(n: int) -> int:
     # t := table of cumulative sums
     # t[a] <- b+c+d

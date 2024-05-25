@@ -2,7 +2,8 @@
 
 up_to: int = 20
 
-def primeFactors(n: int)-> dict[int, int]:
+
+def primeFactors(n: int) -> dict[int, int]:
     ans: dict[int, int] = {}
     i: int = 2
     while n > 1:
@@ -16,7 +17,8 @@ def primeFactors(n: int)-> dict[int, int]:
             i += 1
     return ans
 
-def combine(d1: dict[int, int], d2: dict[int,int])-> dict[int,int]:
+
+def combine(d1: dict[int, int], d2: dict[int, int]) -> dict[int, int]:
     if len(d2) > len(d1):
         # invariant: d1 has more entries than d2
         d1, d2 = d2, d1
@@ -27,12 +29,14 @@ def combine(d1: dict[int, int], d2: dict[int,int])-> dict[int,int]:
             d1[k] = v
     return d1
 
-def multiply(d: dict[int, int])-> int:
+
+def multiply(d: dict[int, int]) -> int:
     ans = 1
     for k, v in d.items():
         ans *= k**v
 
     return ans
+
 
 factors: dict[int, int] = {}
 

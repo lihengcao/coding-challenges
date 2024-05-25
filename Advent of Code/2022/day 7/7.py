@@ -1,6 +1,5 @@
 from collections import defaultdict
 
-
 day = 7
 filename = f"{day}.txt"
 # filename = f"{day}s.txt"
@@ -8,16 +7,16 @@ filename = f"{day}.txt"
 
 def first() -> int:
     folders = defaultdict(int)
-    path = ['/']
-    
+    path = ["/"]
+
     with open(filename, "r") as f:
         for l in f.readlines():
-            l = l.strip().split(' ')
+            l = l.strip().split(" ")
 
             if l[0] == "$":
                 if l[1] == "cd":
                     if l[2] == "/":
-                        path = ['/']
+                        path = ["/"]
                     elif l[2] == "..":
                         path.pop()
                     else:
@@ -33,21 +32,22 @@ def first() -> int:
     # print(folders)
     return sum(n for n in folders.values() if n <= 100_000)
 
+
 def second() -> int:
     folders = defaultdict(int)
-    path = ['/']
+    path = ["/"]
 
     target_free_space = 30000000
     device_total_space = 70000000
-    
+
     with open(filename, "r") as f:
         for l in f.readlines():
-            l = l.strip().split(' ')
+            l = l.strip().split(" ")
 
             if l[0] == "$":
                 if l[1] == "cd":
                     if l[2] == "/":
-                        path = ['/']
+                        path = ["/"]
                     elif l[2] == "..":
                         path.pop()
                     else:
@@ -62,7 +62,7 @@ def second() -> int:
 
     current_free_space = device_total_space - folders["/"]
     looking_for = target_free_space - current_free_space
-    
+
     s = folders["/"]
     for k, v in folders.items():
         if looking_for <= v < s:
@@ -71,6 +71,6 @@ def second() -> int:
     return s
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(first())
     print(second())

@@ -1,10 +1,10 @@
 from collections import Counter
 
 for _ in range(int(input())):
-    n, m, k = [int(e) for e in input().split(' ')]
+    n, m, k = [int(e) for e in input().split(" ")]
 
-    a = [int(e) for e in input().split(' ')]
-    b = [int(e) for e in input().split(' ')]
+    a = [int(e) for e in input().split(" ")]
+    b = [int(e) for e in input().split(" ")]
     c = a[:m]
 
     # print(c)
@@ -47,13 +47,12 @@ for _ in range(int(input())):
                 else:
                     if current_counter[add] < target_counter[add]:
                         overlap += 1
-                        
-                    current_counter[add] += 1
 
+                    current_counter[add] += 1
 
         good_subs += 1 if overlap >= k else 0
 
         # print(remove, add, overlap, current_counter)
 
-    print('---')
+    print("---")
     print(good_subs)

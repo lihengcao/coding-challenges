@@ -2,8 +2,8 @@
 day 10
 """
 
-from typing import Optional
 from collections import deque
+from typing import Optional
 
 INPUT = "input.txt"
 DEBUG = False
@@ -12,33 +12,36 @@ INPUT = "sample.txt"
 DEBUG = True
 
 CUR_TO_NEXT_MAPPINGS = {  # (i, j) coords, not (x, y)
-    '|': ((-1, 0), (1, 0)),
-    '-': ((0, -1), (0, 1)),
-    'L': ((-1, 0), (0, 1)),
-    'J': ((-1, 0), (0, -1)),
-    '7': ((0, -1), (1, 0)),
-    'F': ((0, 1), (1, 0)),
+    "|": ((-1, 0), (1, 0)),
+    "-": ((0, -1), (0, 1)),
+    "L": ((-1, 0), (0, 1)),
+    "J": ((-1, 0), (0, -1)),
+    "7": ((0, -1), (1, 0)),
+    "F": ((0, 1), (1, 0)),
 }
 
 DIRECTIONS = (
-    (1, 0), 
+    (1, 0),
     (0, 1),
     (-1, 0),
     (0, -1),
 )
 
+
 def get_start(grid: list[str]) -> tuple[int, int]:
     for i in range(len(grid)):
         for j in range(len(grid[0])):
-            if grid[i][j] == 'S':
+            if grid[i][j] == "S":
                 return i, j
-            
+
     return 0, 0
 
 
-def traverse(grid: list[str], start_i: int, start_j: int) -> Optional[tuple[int, set[tuple[int, int]]]]:
-     # easier to track visited than travel directoin
-    visited = set() 
+def traverse(
+    grid: list[str], start_i: int, start_j: int
+) -> Optional[tuple[int, set[tuple[int, int]]]]:
+    # easier to track visited than travel directoin
+    visited = set()
     q = deque([(start_i, start_j)])
     m, n = len(grid), len(grid[0])
 
@@ -48,33 +51,51 @@ def traverse(grid: list[str], start_i: int, start_j: int) -> Optional[tuple[int,
         x, y = q.popleft()
         # print(x, y)
 
-        if not (0 <= x < m and 0 <= y < n) or (x, y,) in visited:
+        if (
+            not (0 <= x < m and 0 <= y < n)
+            or (
+                x,
+                y,
+            )
+            in visited
+        ):
             continue
 
         char = grid[x][y]
 
-        if char == 'S':
+        if char == "S":
             if length == 1:
                 continue
             return length, visited
-        
-        if char == '.':
+
+        if char == ".":
             return None
-        
+
         length += 1
-        
-        visited.add((x, y,))
+
+        visited.add(
+            (
+                x,
+                y,
+            )
+        )
 
         for dx, dy in CUR_TO_NEXT_MAPPINGS[char]:
             i, j = x + dx, y + dy
             if not (0 <= i < m and 0 <= j < n):
                 return None
-            if (i, j,) not in visited:
-                q.append((i, j,))
-    
+            if (
+                i,
+                j,
+            ) not in visited:
+                q.append(
+                    (
+                        i,
+                        j,
+                    )
+                )
 
     return None
-
 
 
 def p1() -> None:
@@ -97,7 +118,13 @@ def p1() -> None:
     print(loop // 2)
 
 
-def count_inside_loop(grid: list[str], boundary: set[tuple[int, int]], visited: set[tuple[int, int]], i: int, j: int) -> int:
+def count_inside_loop(
+    grid: list[str],
+    boundary: set[tuple[int, int]],
+    visited: set[tuple[int, int]],
+    i: int,
+    j: int,
+) -> int:
     inside_loop = 0
     m, n = len(grid), len(grid[0])
 
@@ -109,21 +136,21 @@ def count_inside_loop(grid: list[str], boundary: set[tuple[int, int]], visited: 
 
         if (x, y) in visited or (x, y) in boundary:
             continue
-            
+
         visited.add((x, y))
 
         if not (0 <= x < m and 0 <= y < n):
             return 0
-        
+
         char = grid[x][y]
         # print(char)
 
-        if char == 'S':
+        if char == "S":
             continue
 
-        if char != '.' and (x, y) not in boundary:
+        if char != "." and (x, y) not in boundary:
             return 0
-    
+
         inside_loop += 1
 
         for dx, dy in DIRECTIONS:
@@ -153,21 +180,19 @@ def p2():
             loop = a + 1
             boundary = v
 
-    print(loop//2)
+    print(loop // 2)
 
     assert boundary is not None
     visited = set()
     enclosed = 0
     for i in range(len(lines)):
         for j in range(len(lines[0])):
-            if lines[i][j] == '.':
+            if lines[i][j] == ".":
                 enclosed += count_inside_loop(lines, boundary, visited, i, j)
 
     # print(count_inside_loop(lines, visited, 6, 2))
 
     print(enclosed)
 
+
 p2()
-
-
-

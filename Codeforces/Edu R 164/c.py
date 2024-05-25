@@ -1,7 +1,7 @@
 for _ in range(int(input())):
     x, y = list(input()), list(input())
 
-    if int(''.join(x)) < int(''.join(y)):
+    if int("".join(x)) < int("".join(y)):
         x, y = y, x
 
     ind = 0
@@ -15,6 +15,5 @@ for _ in range(int(input())):
             x[ind], y[ind] = y[ind], x[ind]
         ind += 1
 
-
-    print(''.join(x))
-    print(''.join(y))
+    print("".join(x))
+    print("".join(y))

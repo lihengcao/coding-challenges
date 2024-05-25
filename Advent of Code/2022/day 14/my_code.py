@@ -13,14 +13,14 @@ def sign(n: int) -> int:
 
 
 class Material(Enum):
-        SOURCE = '+'
-        ROCK = '#'
-        SAND = 'o'
-        AIR = '.'
+    SOURCE = "+"
+    ROCK = "#"
+    SAND = "o"
+    AIR = "."
 
 
 class Cave:
-    def __init__(self, rock_lines: list[list[list[int]]], floor = False) -> None:
+    def __init__(self, rock_lines: list[list[list[int]]], floor=False) -> None:
         self.materials = 0
         xs = [rock[0] for rock_line in rock_lines for rock in rock_line]
         ys = [rock[1] for rock_line in rock_lines for rock in rock_line]
@@ -34,7 +34,9 @@ class Cave:
 
         if floor:
             m += 2
-            n = 2 * m  # definitely taller than wide, don't need to worry about n > 2 * m for these inputs
+            n = (
+                2 * m
+            )  # definitely taller than wide, don't need to worry about n > 2 * m for these inputs
             self.min_x = 500 - m
 
         self.cave = [[Material.AIR] * n for _ in range(m)]
@@ -58,52 +60,54 @@ class Cave:
         if floor:
             self.cave[-1] = [Material.ROCK for _ in self.cave[0]]
 
-
     def adjust_coord(self, x: int) -> int:
         return x - self.min_x
-
 
     def add(self, mat: Material = Material.SAND, x: int = 500, y: int = 0) -> None:
         i, j = y, self.adjust_coord(x)
 
         if mat is Material.SAND:
             i, j = self.simulate(i, j)
-            
-        if mat is not Material.SAND or (0 < i < len(self.cave) - 1 and 0 <= j < len(self.cave[0])):
+
+        if mat is not Material.SAND or (
+            0 < i < len(self.cave) - 1 and 0 <= j < len(self.cave[0])
+        ):
             self.cave[i][j] = mat
             if mat is Material.SAND:
                 self.materials += 1
-            
-
 
     def simulate(self, i: int, j: int) -> tuple[int, int]:
         while 0 <= i < len(self.cave) - 1 and 0 <= j < len(self.cave[0]):
             if Material.SAND is not self.cave[i + 1][j] is not Material.ROCK:
                 i += 1
-            elif j == 0 or Material.SAND is not self.cave[i + 1][j - 1] is not Material.ROCK:
+            elif (
+                j == 0
+                or Material.SAND is not self.cave[i + 1][j - 1] is not Material.ROCK
+            ):
                 j -= 1
-            elif j == len(self.cave[0]) - 1 or Material.SAND is not self.cave[i + 1][j + 1] is not Material.ROCK:
+            elif (
+                j == len(self.cave[0]) - 1
+                or Material.SAND is not self.cave[i + 1][j + 1] is not Material.ROCK
+            ):
                 j += 1
             else:
                 break
 
         return i, j
 
-
     def add_until_no_more(self) -> int:
         before = self.materials
 
         while True:
-            self.add() 
+            self.add()
             if before == self.materials:
                 return before
             before += 1
 
-
     def visualize(self) -> None:
-        print('-' * len(self.cave[0]))
+        print("-" * len(self.cave[0]))
         print()
         for row in self.cave:
-            print(''.join([e.value for e in row]))
+            print("".join([e.value for e in row]))
         print()
-        print('-' * len(self.cave[0]))
+        print("-" * len(self.cave[0]))

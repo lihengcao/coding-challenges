@@ -8,7 +8,7 @@ with open("files/81.txt", "r") as f:
     # in theory not good to load everything into memory, but it works
     for i in range(80):
         l = f.readline()
-        M[i] = [int(e) for e in l.split(',')]
+        M[i] = [int(e) for e in l.split(",")]
 
 cache = [[0] * 80 for _ in range(80)]
 cache[-1][-1] = M[-1][-1]

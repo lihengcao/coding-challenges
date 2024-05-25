@@ -1,6 +1,7 @@
 """Round 944"""
+
 for _ in range(int(input())):
-    order = [int(e) for e in input().split(' ')]
+    order = [int(e) for e in input().split(" ")]
     a, b, c, d = order
 
     a, b = min(a, b), max(a, b)

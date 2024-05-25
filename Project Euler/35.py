@@ -18,7 +18,7 @@ def rotate(n):
     candidates = []
 
     for _ in s:
-        if (a := int(''.join(s))) not in se:
+        if (a := int("".join(s))) not in se:
             candidates.append(a)
             se.add(a)
         s = s[1:] + s[:1]

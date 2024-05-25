@@ -12,25 +12,25 @@ def p1() -> None:
         lines = f.read().splitlines()
 
     LR = lines[0]
-    start = 'AAA'
+    start = "AAA"
 
     nodes: dict[str, tuple[str, str]] = {}
     for i in range(2, len(lines)):
         line = lines[i]
 
-        l, r = [e.strip() for e in line.split('=')]
+        l, r = [e.strip() for e in line.split("=")]
 
-        r = tuple(s.lstrip() for s in r[1:-1].split(','))
+        r = tuple(s.lstrip() for s in r[1:-1].split(","))
         assert len(r) == 2
 
         nodes[l] = r
 
     cur = start
     steps = 0
-    while cur != 'ZZZ':
+    while cur != "ZZZ":
         ind = steps % len(LR)
 
-        direction = 0 if LR[ind] == 'L' else 1
+        direction = 0 if LR[ind] == "L" else 1
 
         cur = nodes[cur][direction]
 
@@ -39,21 +39,22 @@ def p1() -> None:
     print(steps)
 
 
-def traverse_cycle(nodes: dict[str, tuple[str, str]], LR: str, start: str) -> dict[tuple[int, int], int]:
+def traverse_cycle(
+    nodes: dict[str, tuple[str, str]], LR: str, start: str
+) -> dict[tuple[int, int], int]:
     cycle = {}
     steps = 1
-    cur = nodes[start][0 if LR[0] == 'L' else 1]
-    while cur != start and cur[-1] != 'A':
+    cur = nodes[start][0 if LR[0] == "L" else 1]
+    while cur != start and cur[-1] != "A":
         ind = steps % len(LR)
-        
-        if cur[-1] == 'Z':
+
+        if cur[-1] == "Z":
             data = (cur, ind)
             if data in cycle:
                 return cycle
             cycle[data] = steps
 
-        
-        direction = 0 if LR[ind] == 'L' else 1
+        direction = 0 if LR[ind] == "L" else 1
 
         cur = nodes[cur][direction]
 
@@ -73,16 +74,15 @@ def p2() -> None:
     for i in range(2, len(lines)):
         line = lines[i]
 
-        l, r = [e.strip() for e in line.split('=')]
+        l, r = [e.strip() for e in line.split("=")]
 
-        if l[-1] == 'A':
+        if l[-1] == "A":
             starts.append(l)
 
-        r = tuple(s.lstrip() for s in r[1:-1].split(','))
+        r = tuple(s.lstrip() for s in r[1:-1].split(","))
         assert len(r) == 2
 
         nodes[l] = r
-
 
     cycles = [traverse_cycle(nodes, LR, start) for start in starts]
     if DEBUG:
@@ -94,5 +94,6 @@ def p2() -> None:
     vals = [next(iter(c.values())) for c in cycles]
 
     print(lcm(*vals))
+
 
 p2()

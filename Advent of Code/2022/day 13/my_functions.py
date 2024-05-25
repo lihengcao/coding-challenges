@@ -4,7 +4,7 @@ from enum import IntEnum
 
 def str_find_int(s: str, begin: int, end: int) -> int:
     stop = begin + 1
-    while stop < end and s[stop] != ',' and s[stop] != ']':
+    while stop < end and s[stop] != "," and s[stop] != "]":
         stop += 1
 
     return stop
@@ -13,10 +13,10 @@ def str_find_int(s: str, begin: int, end: int) -> int:
 def str_find_nested_list(s: str, begin: int, end: int) -> int:
     stop = begin + 1
     opens = 1
-    while stop < end and not (opens == 1 and s[stop] == ']'):
-        if s[stop] == '[':
+    while stop < end and not (opens == 1 and s[stop] == "]"):
+        if s[stop] == "[":
             opens += 1
-        elif s[stop] == ']':
+        elif s[stop] == "]":
             opens -= 1
 
         stop += 1
@@ -24,8 +24,7 @@ def str_find_nested_list(s: str, begin: int, end: int) -> int:
     return stop
 
 
-def deserialize_nested_list(
-        line: str, begin: int = 1, end: int | None = None) -> list:
+def deserialize_nested_list(line: str, begin: int = 1, end: int | None = None) -> list:
     if end is None:
         end = len(line) - 1
 
@@ -33,11 +32,9 @@ def deserialize_nested_list(
 
     ind = begin
     while ind < end:
-        if line[ind] == '[':
+        if line[ind] == "[":
             stop = str_find_nested_list(line, ind, end)
-            deserialized_list.append(
-                deserialize_nested_list(line, ind + 1, stop)
-                )
+            deserialized_list.append(deserialize_nested_list(line, ind + 1, stop))
             ind = stop + 2
         else:
             stop = str_find_int(line, ind, end)

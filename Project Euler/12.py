@@ -1,5 +1,6 @@
 import math
 
+
 def factors(n: int) -> int:
     s = int(math.sqrt(n))
     ans = 3 if n == s * s else 2
@@ -11,17 +12,17 @@ def factors(n: int) -> int:
     return ans
 
 
-t, n = 2, 1  # triangle, number 
+t, n = 2, 1  # triangle, number
 best = 0
 while True:
     f = factors(n)
-    
+
     n += t
     t += 1
 
     best = max(best, f)
     print(t, n, f, best)
-    
+
     if f > 500:
         break
 

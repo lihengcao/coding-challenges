@@ -5,7 +5,7 @@ filename = "input.txt"
 # filename = "sample.txt"
 
 with open(filename, "r") as f:
-    instructions = [l.strip().split(' ') for l in f.readlines()]
+    instructions = [l.strip().split(" ") for l in f.readlines()]
 
 
 def first() -> int:
@@ -30,11 +30,11 @@ def first() -> int:
 
 def update_screen(screen: list[list[str]], cycle: int, reg: int) -> None:
     if abs(((cycle - 1) % 40) - reg) <= 1:
-        screen[((cycle - 1)//40)][(cycle - 1) % 40] = '#'
+        screen[((cycle - 1) // 40)][(cycle - 1) % 40] = "#"
 
 
-def second(width: int=40, height: int=6) -> str:
-    screen = [['.'] * width for _ in range(height)]
+def second(width: int = 40, height: int = 6) -> str:
+    screen = [["."] * width for _ in range(height)]
     reg = 1  # register value and sprite position
     cycle = 1
     for ins in instructions:
@@ -46,10 +46,10 @@ def second(width: int=40, height: int=6) -> str:
             reg += int(ins[1])
 
         cycle += 1
-    
-    return '\n'.join([''.join(r) for r in screen])
+
+    return "\n".join(["".join(r) for r in screen])
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(first())
     print(second())

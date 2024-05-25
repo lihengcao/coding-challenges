@@ -1,6 +1,6 @@
 # Maximum path sum I
 
-s = '''75
+s = """75
 95 64
 17 47 82
 18 35 87 10
@@ -14,13 +14,13 @@ s = '''75
 70 11 33 28 77 73 17 78 39 68 17 57
 91 71 52 38 17 14 91 43 58 50 27 29 48
 63 66 04 68 89 53 67 30 73 16 69 87 40 31
-04 62 98 27 23 09 70 98 73 93 38 53 60 04 23'''
+04 62 98 27 23 09 70 98 73 93 38 53 60 04 23"""
 
-s = s.split('\n')
+s = s.split("\n")
 for i in range(len(s)):
     s[i] = [int(n) for n in s[i].split()]
 
-for r in range(len(s)-2, -1, -1):  # iterate backwards, excluding last row
+for r in range(len(s) - 2, -1, -1):  # iterate backwards, excluding last row
     for c in range(len(s[r])):  # iterate through current row
         s[r][c] += max(s[r + 1][c], s[r + 1][c + 1])
 
