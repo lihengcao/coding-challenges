@@ -1,4 +1,4 @@
-from math import inf
+# from math import inf
 from typing import Optional
 
 INPUT = "input.txt"

@@ -9,9 +9,9 @@ for _ in range(int(input())):
     done = False
     base_expected = min(arr)
 
-    for row in range(n):
+    for _row in range(n):
         expected = base_expected
-        for col in range(n):
+        for _col in range(n):
             if expected not in arr:
                 print("NO")
                 done = True

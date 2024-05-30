@@ -1,4 +1,4 @@
-from math import lcm
+# from math import lcm
 
 INPUT = "input.txt"
 DEBUG = False
