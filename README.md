@@ -1,13 +1,13 @@
 # Practice and Coding Challenges
 
-Things that don't deserver their own repo go here.
+Things that don't deserve their own repo go here.
 
-# Notes
+## Notes
 
-## Separate input from output in the terminal
+### Separate input from output in the terminal
 
 `cat input | python3 a.py`
 
-## Jupyter cells in a python file
+### Jupyter cells in a python file
 
 `# %% [markdown]` for markdown
