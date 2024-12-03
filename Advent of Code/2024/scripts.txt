@@ -1,0 +1,4 @@
+cat sample.txt | python3 1.py
+cat input.txt | python3 1.py
+cat sample.txt | python3 2.py
+cat input.txt | python3 2.py
