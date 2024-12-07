@@ -39,15 +39,13 @@ def count_patroled(obstacles: set[tuple[int, int]], start: tuple[int, int], M: i
     x, y = start
     direction_i = 0
 
-    prev = start
-
     while 0 <= x < M and 0 <= y < N:
-        if (x, y) not in obstacles:
-            visited.add((x, y))
-            prev = x, y  # if input is valid, then don't need to worry about setting prev in the other branch
-        else:
-            x, y = prev
+        if (x, y) in obstacles:
+            dx, dy = DIRECTIONS[direction_i]
+            x, y = x - dx, y - dy
             direction_i = (direction_i + 1) % len(DIRECTIONS)
+        else:
+            visited.add((x, y))
 
         dx, dy = DIRECTIONS[direction_i]
         x, y = x + dx, y + dy
