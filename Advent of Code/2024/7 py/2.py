@@ -24,9 +24,19 @@ def asdf(target: int, nums: list[int], ind: int = 0) -> bool:
         if ind >= len(nums):
             return False
 
-        return h(acc + nums[ind], ind + 1) or h(acc * nums[ind], ind + 1) or h(int(str(acc) + str(nums[ind])), ind + 1)
+        return h(acc + nums[ind], ind + 1) or h(acc * nums[ind], ind + 1) or h(faster_in_theory_concat(acc, nums[ind]), ind + 1)
     
     return h(nums[0], 1)
+
+# ok faster in theory, doesn't seem to be that much faster
+def faster_in_theory_concat(a: int, b: int) -> int:
+    # # need to "add space" of at least 1 zero (multiply by 10), even if `b` == 0
+    multiplier = 10
+
+    while b >= multiplier:
+        multiplier *= 10
+
+    return a * multiplier + b
 
 if __name__ == "__main__":
     main()
