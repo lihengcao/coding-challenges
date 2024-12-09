@@ -1,3 +1,11 @@
+def read_input():
+    while True:
+        try:
+            _line = input()
+
+        except EOFError:
+            break
+
 def main():
     pass
 
