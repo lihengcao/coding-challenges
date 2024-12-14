@@ -1,4 +1,4 @@
-FILENAME = "sample.txt"
+FILENAME = "s.txt"
 
 def read_input():
     with open(FILENAME, "r") as f:
