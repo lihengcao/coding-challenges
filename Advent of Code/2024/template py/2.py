@@ -1,10 +1,8 @@
-def read_input():
-    while True:
-        try:
-            _line = input()
+FILENAME = "sample.txt"
 
-        except EOFError:
-            break
+def read_input():
+    with open(FILENAME, "r") as f:
+        _lines = f.readlines()
 
 def main():
     pass
