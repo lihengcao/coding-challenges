@@ -2,7 +2,7 @@ FILENAME = "s.txt"
 
 def read_input():
     with open(FILENAME, "r") as f:
-        _lines = f.readlines()
+        _lines = f.read().splitlines()
 
 def main():
     pass
