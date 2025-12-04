@@ -1,0 +1,4 @@
+cat s.txt | python3 1.py
+cat i.txt | python3 1.py
+cat s.txt | python3 2.py
+cat i.txt | python3 2.py
