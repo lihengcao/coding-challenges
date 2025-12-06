@@ -14,17 +14,18 @@ def main():
     p = 50
 
     for dir, n in ops:
-        if dir == 'L':
+        if dir == "L":
             p -= n
-        elif dir == 'R':
+        elif dir == "R":
             p += n
 
         p %= 100
-        
+
         if p == 0:
             zeros += 1
 
     print(zeros)
+
 
 if __name__ == "__main__":
     main()

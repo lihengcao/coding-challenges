@@ -1,8 +1,8 @@
 def main():
     ranges: list[tuple[int, int]] = []
 
-    for a in input().split(','):
-        x, y = a.split('-')
+    for a in input().split(","):
+        x, y = a.split("-")
         ranges.append((int(x), int(y)))
     ranges.sort()
 
@@ -15,13 +15,13 @@ def main():
             if check(c):
                 count += c
 
-
     print(count)
+
 
 def check(c: int) -> bool:
     s = str(c)
-    
-    for mul in range(1, len(s)//2 + 1):
+
+    for mul in range(1, len(s) // 2 + 1):
         if len(s) % mul != 0:
             continue
 
@@ -30,7 +30,7 @@ def check(c: int) -> bool:
                 break
         else:
             return True
-        
+
     return False
 
 
