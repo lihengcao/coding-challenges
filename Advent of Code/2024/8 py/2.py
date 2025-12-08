@@ -1,5 +1,6 @@
 from collections import defaultdict
 
+
 def main():
     antennas = defaultdict(list)
     row = 0
@@ -52,9 +53,7 @@ def count_antinodes(antennas: dict[str, list[tuple[int, int]]], M, N) -> int:
                     y -= d2
 
     return len(s)
-            
 
-    
 
 if __name__ == "__main__":
     main()

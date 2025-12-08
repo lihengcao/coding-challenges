@@ -2,7 +2,7 @@ def read_input():
     grid = []
     while True:
         try:
-            line = [-1 if e == '.' else int(e) for e in input()]
+            line = [-1 if e == "." else int(e) for e in input()]
 
             grid.append(line)
 
@@ -11,10 +11,12 @@ def read_input():
 
     return grid
 
+
 def main():
     grid = read_input()
 
     print(calc_total_score(grid))
+
 
 def calc_total_score(grid: list[list[int]]) -> int:
     M, N = len(grid), len(grid[0])
@@ -28,12 +30,14 @@ def calc_total_score(grid: list[list[int]]) -> int:
 
     return score
 
+
 DIRECTIONS = (
     (0, 1),
     (1, 0),
     (-1, 0),
     (0, -1),
 )
+
 
 # I will admit, I did not try if a more brute force solution worked; I did a medium-mature optimization
 def calc_score(grid, M, N, start) -> int:
@@ -46,9 +50,9 @@ def calc_score(grid, M, N, start) -> int:
         if grid[x][y] == 9:
             cache[(x, y)] = 1
             return 1
-        
+
         score = 0
-        
+
         for dx, dy in DIRECTIONS:
             i, j = x + dx, y + dy
 
@@ -60,7 +64,6 @@ def calc_score(grid, M, N, start) -> int:
 
     x, y = start
     return search(x, y)
-
 
 
 if __name__ == "__main__":

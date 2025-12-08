@@ -9,6 +9,7 @@ def read_input():
 
     return grid
 
+
 def main():
     grid = read_input()
 
@@ -24,6 +25,7 @@ def calc_score(grid: list[list[str]]) -> int:
 
     return total_score
 
+
 DIRECTIONS = (
     (0, 1),
     (1, 0),
@@ -31,10 +33,11 @@ DIRECTIONS = (
     (-1, 0),
 )
 
+
 def calc_individual_score(grid, M, N, i, j) -> int:
     current = grid[i][j]
     perimeter = 0
-    
+
     if current is None:
         return 0
 
@@ -62,7 +65,6 @@ def calc_individual_score(grid, M, N, i, j) -> int:
         grid[i][j] = None
 
     return len(visited) * perimeter
-
 
 
 if __name__ == "__main__":

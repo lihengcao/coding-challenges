@@ -19,8 +19,9 @@ def main():
                 continue
 
             xmas_count += search(grid, r, c, WORD, M, N)
-    
+
     print(xmas_count)
+
 
 def search(grid: list[str], r: int, c: int, WORD: str, M: int, N: int) -> int:
     occurs = 0
@@ -30,7 +31,7 @@ def search(grid: list[str], r: int, c: int, WORD: str, M: int, N: int) -> int:
         for dc in range(-1, 2):
             if dr == dc == 0:
                 continue
-            
+
             i, j = r + dr, c + dc
 
             matched_word = [grid[r][c]]
@@ -42,13 +43,11 @@ def search(grid: list[str], r: int, c: int, WORD: str, M: int, N: int) -> int:
                 matched_word.append(grid[i][j])
                 i += dr
                 j += dc
-            else:            
+            else:
                 print(r, c, dr, dc, "".join(matched_word))
                 occurs += 1
 
-
     return occurs
-
 
 
 if __name__ == "__main__":

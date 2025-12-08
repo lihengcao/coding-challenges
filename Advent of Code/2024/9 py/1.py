@@ -14,7 +14,7 @@ def calc_final_checksum(file: str) -> int:
 
     for i in range(len(file)):
         if i % 2 == 0:
-            expanded_disk.extend([i//2] * int(file[i]))
+            expanded_disk.extend([i // 2] * int(file[i]))
         else:
             expanded_disk.extend([None] * int(file[i]))
 
@@ -43,9 +43,6 @@ def calc_final_checksum(file: str) -> int:
         count += ind * id
 
     return count
-        
-
-
 
 
 if __name__ == "__main__":

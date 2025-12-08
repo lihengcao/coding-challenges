@@ -2,7 +2,7 @@ def main():
     safe_reports = 0
     while True:
         try:
-            line = [int(n) for n in input().split(' ')]
+            line = [int(n) for n in input().split(" ")]
 
             safe_reports += int(is_safe(line))
 
@@ -10,6 +10,7 @@ def main():
             break
 
     print(safe_reports)
+
 
 def is_safe(report: list[int]) -> bool:
     increasing = report[0] < report[1]

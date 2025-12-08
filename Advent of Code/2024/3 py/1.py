@@ -1,11 +1,13 @@
 from enum import Enum
 
+
 class LookingFor(Enum):
     MUL_LEFT = 0
     NUM1 = 1
     COMMA = 2
     NUM2 = 3
     RIGHT = 4
+
 
 def main():
     total = 0
@@ -20,7 +22,7 @@ def main():
             while ind < len(line):
                 match state:
                     case LookingFor.MUL_LEFT:
-                        if line[ind:ind + len("mul(")] == "mul(":
+                        if line[ind : ind + len("mul(")] == "mul(":
                             state = LookingFor.NUM1
                             ind += len("mul(")
                         else:
@@ -45,7 +47,7 @@ def main():
                             state = LookingFor.NUM2
                         else:
                             state = LookingFor.MUL_LEFT
-                        
+
                         ind += 1
                     case LookingFor.NUM2:
                         num = []
@@ -60,7 +62,7 @@ def main():
                             state = LookingFor.RIGHT
                         else:
                             state = LookingFor.MUL_LEFT
-                        
+
                         ind += len(num)
                     case LookingFor.RIGHT:
                         if line[ind] == ")":
@@ -73,6 +75,7 @@ def main():
             break
 
     print(total)
+
 
 if __name__ == "__main__":
     main()

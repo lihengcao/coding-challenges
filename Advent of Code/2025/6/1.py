@@ -6,17 +6,17 @@ def main():
         try:
             i = input()
 
-            if i[0] in '+*':
-                operations = [e for e in i.split(' ') if e != '']
+            if i[0] in "+*":
+                operations = [e for e in i.split(" ") if e != ""]
             else:
-                nums.append([int(e) for e in i.split(' ') if e != ''])
+                nums.append([int(e) for e in i.split(" ") if e != ""])
         except EOFError:
             break
-    
+
     total = 0
 
     for c in range(len(nums[0])):
-        if operations[c] == '*':
+        if operations[c] == "*":
             a = 1
             for i in range(len(nums)):
                 a *= nums[i][c]
@@ -25,8 +25,6 @@ def main():
             for i in range(len(nums)):
                 a += nums[i][c]
         total += a
-
-
 
     print(total)
 

@@ -1,6 +1,7 @@
 from collections import defaultdict
 from typing import Optional
 
+
 def main():
     rules = defaultdict(set)
 
@@ -18,30 +19,30 @@ def main():
 
             if processing_rules:
                 # maybe construct a graph later?
-                before, after = tuple(int(n) for n in line.split('|') if n != "")
+                before, after = tuple(int(n) for n in line.split("|") if n != "")
                 rules[before].add(after)
                 continue
 
-            update = [int(n) for n in line.split(',') if n != ""]
+            update = [int(n) for n in line.split(",") if n != ""]
 
             if verify_update(rules, update):
                 continue
-            
+
             update = calc_correct_rev_order(rules, update)
-            
+
             # print(update)
 
-            correct_pages_sum += update[len(update)//2]
+            correct_pages_sum += update[len(update) // 2]
 
         except EOFError:
             break
 
-
     print(correct_pages_sum)
+
 
 def calc_correct_rev_order(rules, update) -> list[int]:
     update = set(update)
-    
+
     def h(candidates: set[int]) -> Optional[list[int]]:
         if not candidates:
             return []
@@ -62,8 +63,8 @@ def calc_correct_rev_order(rules, update) -> list[int]:
 
         return None
 
-
     return h(update)
+
 
 def verify_update(rules: dict[int, set[int]], update: list[int]) -> bool:
     for first_i in range(len(update) - 1):

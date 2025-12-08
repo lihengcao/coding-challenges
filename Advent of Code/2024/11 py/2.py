@@ -1,8 +1,10 @@
-from math import log10
 from collections import defaultdict
+from math import log10
+
 
 def read_input():
-    return [int(s) for s in input().split(' ') if s != '']
+    return [int(s) for s in input().split(" ") if s != ""]
+
 
 def main():
     ordered_stones = read_input()
@@ -11,8 +13,9 @@ def main():
 
     for stone in ordered_stones:
         stones[stone] += 1
-    
+
     print(blink(stones))
+
 
 def blink(stones: dict[int, int]) -> int:
     for i in range(25):
@@ -34,18 +37,21 @@ def blink(stones: dict[int, int]) -> int:
 
     return sum(stones.values())
 
+
 def count_digits(n: int) -> int:
     return int(log10(n)) + 1
+
 
 def split_number(n: int, length: int) -> tuple[int, int]:
     M = length // 2
 
-    cutoff = 10 ** M
+    cutoff = 10**M
 
     left = n // cutoff
     right = n % cutoff
 
     return left, right
+
 
 if __name__ == "__main__":
     main()

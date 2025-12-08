@@ -18,7 +18,7 @@ def calc_final_checksum(compressed_file: str) -> int:
         val = int(compressed_file[i])
         if i % 2 == 0:
             files.append([len(expanded_disk), val])
-            expanded_disk.extend([i//2] * val)
+            expanded_disk.extend([i // 2] * val)
         else:
             free_space.append([len(expanded_disk), val])
             expanded_disk.extend([None] * val)
@@ -41,7 +41,7 @@ def calc_final_checksum(compressed_file: str) -> int:
                 # in theory files_ind should still be accesible after the break, but let me be clear!
                 move_to_free_ind = free_space_ind
                 break
-        
+
         if move_to_free_ind is not None:
             move(expanded_disk, free_space, files, move_to_free_ind, files_ind)
 
@@ -55,9 +55,11 @@ def calc_final_checksum(compressed_file: str) -> int:
         count += ind * id
 
     return count
-        
 
-def move(expanded_disk: list[int], free_space, files, free_space_ind, files_ind) -> None:
+
+def move(
+    expanded_disk: list[int], free_space, files, free_space_ind, files_ind
+) -> None:
     file_loc, file_size = files[files_ind]
     free_loc, free_space_size = free_space[free_space_ind]
     for i in range(file_size):
@@ -70,17 +72,8 @@ def move(expanded_disk: list[int], free_space, files, free_space_ind, files_ind)
     # if free_space[free_space_ind][1] == 0:
     #     free_space.pop(free_space_ind)
     # else:
-    
+
     free_space[free_space_ind][0] += file_size
-
-
-    
-
-
-    
-
-    
-
 
 
 if __name__ == "__main__":

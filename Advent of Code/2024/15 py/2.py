@@ -1,11 +1,12 @@
 FILENAME = "s.txt"
 
 DOUBLE_WIDE = {
-    "#": ['#'] * 2,
-    'O': ['[', ']'],
-    '.': ['.'] * 2,
-    '@': ['@', '.'],
+    "#": ["#"] * 2,
+    "O": ["[", "]"],
+    ".": ["."] * 2,
+    "@": ["@", "."],
 }
+
 
 def read_input():
     with open(FILENAME, "r") as f:
@@ -30,12 +31,14 @@ def read_input():
 
     return grid, "".join(instructions)
 
+
 def main():
     grid, instructions = read_input()
     # instructions = compress_instructions(instructions)
 
     print(calc_coordinate_sum(grid, instructions))
-    
+
+
 def calc_coordinate_sum(grid: list[list[str]], instructions: str) -> int:
     display_grid(grid)
 
@@ -46,10 +49,11 @@ def calc_coordinate_sum(grid: list[list[str]], instructions: str) -> int:
     coordinate_sum = 0
     for i in range(len(grid)):
         for j in range(len(grid[0])):
-            if grid[i][j] == 'O':
+            if grid[i][j] == "O":
                 coordinate_sum += 100 * i + j
 
     return coordinate_sum
+
 
 DIRECTIONS = {
     "^": (-1, 0),
@@ -57,6 +61,7 @@ DIRECTIONS = {
     "<": (0, -1),
     "v": (1, 0),
 }
+
 
 def simulate_moves(grid: list[list[str]], instructions) -> None:
     rx, ry = find_robot(grid)
@@ -67,27 +72,26 @@ def simulate_moves(grid: list[list[str]], instructions) -> None:
 
 
 def try_move(grid, x, y, dx, dy):
-    
 
     x, y = rx + dx, ry + dy
 
-    while grid[x][y] not in '.#':
+    while grid[x][y] not in ".#":
         x, y = x + dx, y + dy
     print(x, y)
-    if grid[x][y] == '#':
+    if grid[x][y] == "#":
         continue
 
-    grid[x][y] = 'O'
-    grid[rx][ry] = '.'
+    grid[x][y] = "O"
+    grid[rx][ry] = "."
     rx, ry = rx + dx, ry + dy
 
-    grid[rx][ry] = '@'
-        
+    grid[rx][ry] = "@"
+
 
 def find_robot(grid) -> tuple[int, int]:
     for i in range(len(grid)):
         for j in range(len(grid[0])):
-            if grid[i][j] == '@':
+            if grid[i][j] == "@":
                 return i, j
 
     raise ValueError("can't find '@'; probably bad input")
@@ -95,6 +99,7 @@ def find_robot(grid) -> tuple[int, int]:
 
 def display_grid(grid) -> None:
     [print("".join(line)) for line in grid]
+
 
 if __name__ == "__main__":
     main()

@@ -2,6 +2,7 @@ from heapq import heappop, heappush
 
 FILENAME = "i.txt"
 
+
 def read_input():
     with open(FILENAME, "r") as f:
         grid = f.read().splitlines()
@@ -16,7 +17,7 @@ def find_in_grid(grid, target):
                 return i, j
 
     raise Exception("can't find")
-    
+
 
 def main():
     grid = read_input()
@@ -24,6 +25,7 @@ def main():
     E = find_in_grid(grid, "E")
 
     print(solve_maze(grid, S, E))
+
 
 DIRECTIONS = (
     (0, 1),
@@ -41,14 +43,14 @@ def solve_maze(grid, S, E) -> int:
     while heap:
         score, x, y, direc = heappop(heap)
 
-        if grid[x][y] == '#' or (x, y, direc) in visited:
+        if grid[x][y] == "#" or (x, y, direc) in visited:
             continue
 
         if (x, y) == E:
             return score
 
         visited.add((x, y, direc))
-        
+
         dx, dy = DIRECTIONS[direc]
 
         heappush(heap, (score + 1, x + dx, y + dy, direc))
@@ -56,11 +58,7 @@ def solve_maze(grid, S, E) -> int:
         for dd in (-1, 1):
             heappush(heap, (score + 1000, x, y, (direc + dd) % 4))
 
-        
-
-
     raise Exception("can't reach end")
-
 
 
 if __name__ == "__main__":

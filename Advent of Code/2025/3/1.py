@@ -23,7 +23,7 @@ def main():
         if ind == len(bank) - 1:
             best1, best2 = max(bank[:-1]), best1
         else:
-            best2 = max(bank[ind + 1:])
+            best2 = max(bank[ind + 1 :])
 
         print(best1 * 10 + best2)
 

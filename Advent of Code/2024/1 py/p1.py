@@ -4,7 +4,7 @@ def main():
     while True:
         try:
             line = input()
-            le, ri = [int(n) for n in line.split(' ') if n != '']
+            le, ri = [int(n) for n in line.split(" ") if n != ""]
             left.append(le)
             right.append(ri)
         except EOFError:
@@ -14,6 +14,7 @@ def main():
     right.sort()
 
     print(sum(abs(le - ri) for le, ri in zip(left, right)))
+
 
 if __name__ == "__main__":
     main()

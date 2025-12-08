@@ -1,11 +1,11 @@
 for _ in range(int(input())):
-    n, s, m = map(int, input().split(' '))
+    n, s, m = map(int, input().split(" "))
 
     intervals = [(0, 0), (m, m)]
 
     for _ in range(n):
-        
-        intervals.append(tuple(map(int, input().split(' '))))
+
+        intervals.append(tuple(map(int, input().split(" "))))
 
     intervals.sort()
 
@@ -16,4 +16,3 @@ for _ in range(int(input())):
             break
     else:
         print("NO")
-

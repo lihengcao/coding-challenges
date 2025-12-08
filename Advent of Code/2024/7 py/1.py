@@ -16,6 +16,7 @@ def main():
 
     print(sum_test_values)
 
+
 def asdf(target: int, nums: list[int], ind: int = 0) -> bool:
     def h(acc: int, ind: int) -> bool:
         if acc == target:
@@ -26,9 +27,8 @@ def asdf(target: int, nums: list[int], ind: int = 0) -> bool:
 
         return h(acc + nums[ind], ind + 1) or h(acc * nums[ind], ind + 1)
 
-    
-    
     return h(nums[0], 1)
+
 
 if __name__ == "__main__":
     main()

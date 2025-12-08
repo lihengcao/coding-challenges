@@ -1,5 +1,6 @@
 from collections import defaultdict
 
+
 def main():
     rules = defaultdict(set)
 
@@ -16,22 +17,20 @@ def main():
 
             if processing_rules:
                 # maybe construct a graph later?
-                before, after = tuple(int(n) for n in line.split('|') if n != "")
+                before, after = tuple(int(n) for n in line.split("|") if n != "")
                 rules[before].add(after)
                 continue
 
-            update = [int(n) for n in line.split(',') if n != ""]
+            update = [int(n) for n in line.split(",") if n != ""]
 
             if verify_update(rules, update):
-                correct_pages_sum += update[len(update)//2]
-
-
+                correct_pages_sum += update[len(update) // 2]
 
         except EOFError:
             break
 
-
     print(correct_pages_sum)
+
 
 def verify_update(rules: dict[int, set[int]], update: list[int]) -> bool:
     for first_i in range(len(update) - 1):

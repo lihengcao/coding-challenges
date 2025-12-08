@@ -3,7 +3,7 @@ def main():
     ingredients: list[int] = []
 
     while (i := input()) != "":
-        a, b = [int(e) for e in i.split('-')]
+        a, b = [int(e) for e in i.split("-")]
         ranges.append((a, b))
 
     while True:
@@ -11,7 +11,7 @@ def main():
             ingredients.append(int(input()))
         except EOFError:
             break
-    
+
     ranges.sort()
     fresh: list[tuple[int, int]] = []
 
@@ -23,9 +23,9 @@ def main():
         while fresh and cur[0] <= fresh[-1][1]:
             prev = fresh.pop()
             cur = (min(cur[0], prev[0]), max(cur[1], prev[1]))
-        
+
         fresh.append(cur)
-    
+
     total = 0
     for ing in ingredients:
         total += int(find(fresh, ing))
@@ -42,7 +42,7 @@ def find(fresh: list[tuple[int, int]], ing: int) -> bool:
             hi = m
         else:
             lo = m + 1
-    
+
     return fresh[lo][0] <= ing <= fresh[lo][1]
 
 

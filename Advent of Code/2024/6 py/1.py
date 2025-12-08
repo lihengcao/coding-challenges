@@ -23,7 +23,6 @@ def main():
 
     print(count_patroled(obstacles, start, M, N))
 
-    
 
 DIRECTIONS = (
     (-1, 0),
@@ -32,7 +31,10 @@ DIRECTIONS = (
     (0, -1),
 )
 
-def count_patroled(obstacles: set[tuple[int, int]], start: tuple[int, int], M: int, N: int) -> int:
+
+def count_patroled(
+    obstacles: set[tuple[int, int]], start: tuple[int, int], M: int, N: int
+) -> int:
     print(M, N)
     visited = set([start])
 
@@ -51,7 +53,6 @@ def count_patroled(obstacles: set[tuple[int, int]], start: tuple[int, int], M: i
         x, y = x + dx, y + dy
 
     return len(visited)
-
 
 
 if __name__ == "__main__":

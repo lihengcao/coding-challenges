@@ -1,15 +1,17 @@
 FILENAME = "i.txt"
 
+
 def read_input():
     with open(FILENAME, "r") as f:
         lines = f.read().splitlines()
 
-    A = int(lines[0].split(': ')[1])
-    B = int(lines[1].split(': ')[1])
-    C = int(lines[2].split(': ')[1])
-    program = [int(n) for n in lines[4].split(': ')[1].split(',')]
+    A = int(lines[0].split(": ")[1])
+    B = int(lines[1].split(": ")[1])
+    C = int(lines[2].split(": ")[1])
+    program = [int(n) for n in lines[4].split(": ")[1].split(",")]
 
     return A, B, C, program
+
 
 def main():
     A, B, C, program = read_input()
@@ -55,10 +57,9 @@ def main():
 
         instruction_pointer += 2
 
-    print('---')
+    print("---")
     print(combo[4], combo[5], combo[6])
     print(",".join(output))
-
 
 
 if __name__ == "__main__":

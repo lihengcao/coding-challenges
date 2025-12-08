@@ -9,6 +9,7 @@ def read_input():
 
     return grid
 
+
 def main():
     grid = read_input()
 
@@ -24,6 +25,7 @@ def calc_score(grid: list[list[str]]) -> int:
 
     return total_score
 
+
 DIRECTIONS = (
     (0, 1),
     (1, 0),
@@ -31,10 +33,11 @@ DIRECTIONS = (
     (-1, 0),
 )
 
+
 def calc_individual_score(grid, M, N, i, j) -> int:
     current = grid[i][j]
     edges = set()
-    
+
     if current is None:
         return 0
 
@@ -66,6 +69,7 @@ def calc_individual_score(grid, M, N, i, j) -> int:
     print(current, sides)
 
     return len(visited) * sides
+
 
 class Edge:
     def __init__(self, first, second):
@@ -119,9 +123,8 @@ def count_sides(edges: set[Edge]) -> int:
             if candidate_edge not in edges:
                 break
             edges.remove(candidate_edge)
-        
-        x, y = a, b
 
+        x, y = a, b
 
         while True:
             x -= dx
@@ -136,18 +139,10 @@ def count_sides(edges: set[Edge]) -> int:
             if candidate_edge not in edges:
                 break
             edges.remove(candidate_edge)
-            
-
 
         count += 1
 
-
     return count
-
-        
-
-
-
 
 
 if __name__ == "__main__":

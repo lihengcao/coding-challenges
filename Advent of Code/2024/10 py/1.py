@@ -11,6 +11,7 @@ def read_input():
 
     return grid
 
+
 def main():
     grid = read_input()
 
@@ -29,6 +30,7 @@ def calc_total_score(grid: list[list[int]]) -> int:
         score += calc_score(grid, M, N, start)
 
     return score
+
 
 DIRECTIONS = (
     (0, 1),
@@ -54,17 +56,14 @@ def calc_score(grid, M, N, start) -> int:
         if grid[x][y] == 9:
             score += 1
             continue
-        
+
         for dx, dy in DIRECTIONS:
             i, j = x + dx, y + dy
 
             if 0 <= i < M and 0 <= j < N and grid[i][j] == grid[x][y] + 1:
                 s.append((i, j))
-        
-
 
     return score
-
 
 
 if __name__ == "__main__":

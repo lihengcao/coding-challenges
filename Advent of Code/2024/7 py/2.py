@@ -16,6 +16,7 @@ def main():
 
     print(sum_test_values)
 
+
 def asdf(target: int, nums: list[int], ind: int = 0) -> bool:
     def h(acc: int, ind: int) -> bool:
         if acc == target:
@@ -24,9 +25,14 @@ def asdf(target: int, nums: list[int], ind: int = 0) -> bool:
         if ind >= len(nums):
             return False
 
-        return h(acc + nums[ind], ind + 1) or h(acc * nums[ind], ind + 1) or h(faster_in_theory_concat(acc, nums[ind]), ind + 1)
-    
+        return (
+            h(acc + nums[ind], ind + 1)
+            or h(acc * nums[ind], ind + 1)
+            or h(faster_in_theory_concat(acc, nums[ind]), ind + 1)
+        )
+
     return h(nums[0], 1)
+
 
 # ok faster in theory, doesn't seem to be that much faster
 def faster_in_theory_concat(a: int, b: int) -> int:
@@ -37,6 +43,7 @@ def faster_in_theory_concat(a: int, b: int) -> int:
         multiplier *= 10
 
     return a * multiplier + b
+
 
 if __name__ == "__main__":
     main()

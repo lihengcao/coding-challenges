@@ -1,5 +1,6 @@
 from collections import defaultdict
 
+
 def main():
     grid: list[str] = []
 
@@ -8,9 +9,9 @@ def main():
             grid.append(input())
         except EOFError:
             break
-    
+
     beams: defaultdict[tuple[int, int], int] = defaultdict(int)
-    beams[*find_start(grid)] = 1
+    beams[find_start(grid)] = 1
     splits = 0
 
     M, N = len(grid), len(grid[0])
@@ -34,7 +35,7 @@ def main():
                 new[r, c + 1] += count
 
         beams = new
-    
+
     print(splits)
 
 

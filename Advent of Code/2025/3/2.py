@@ -1,5 +1,6 @@
-from typing import Optional
 from functools import reduce
+from typing import Optional
+
 
 def main():
     banks: list[list[int]] = []
@@ -21,10 +22,10 @@ def main():
         #     if not decreasing:
         #         decreasing.append((n, i))
         #         continue
-            
+
         #     while decreasing and decreasing[-1][0] < n:
         #         decreasing.pop()
-        #     decreasing.append((n, i))   
+        #     decreasing.append((n, i))
         # print("".join([str(t[0]) for t in decreasing]))
 
         # --- Attempt 2
@@ -33,7 +34,7 @@ def main():
         # mapping: defaultdict[int, list[int]] = defaultdict(list)
         # for i, n in enumerate(bank):
         #     mapping[n].append(i)
-            
+
         # # print(mapping)
 
         # for n in range(9, 0, -1):
@@ -48,12 +49,12 @@ def main():
         #     else:
         #         continue
         #     break
-        
+
         # j = int("".join([str(bank[i]) for i in range(len(bank)) if on[i]]))
         # print(on, j)
         # print('---')
         # total += j
-        
+
         # --- Attempt 3 ... finally ...
         best: list[int] = []
 
@@ -66,12 +67,15 @@ def main():
 
         j = reduce(lambda a, b: a * 10 + b, best)
         print(j)
-        print('---')
+        print("---")
         total += j
 
     print(total)
 
-def max_and_ind(arr: list[int], start: Optional[int]=None, stop: Optional[int]=None) -> tuple[int, int]:
+
+def max_and_ind(
+    arr: list[int], start: Optional[int] = None, stop: Optional[int] = None
+) -> tuple[int, int]:
     if start is None:
         start = 0
     if stop is None:

@@ -1,10 +1,12 @@
 def read_input():
-    return [s for s in input().split(' ') if s != '']
+    return [s for s in input().split(" ") if s != ""]
+
 
 def main():
     stones = read_input()
-    
+
     print(blink(stones))
+
 
 def blink(stones: list[str]) -> int:
     for i in range(25):
@@ -25,6 +27,7 @@ def blink(stones: list[str]) -> int:
         print(i, len(stones))
 
     return len(stones)
+
 
 if __name__ == "__main__":
     main()

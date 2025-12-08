@@ -2,15 +2,16 @@ def main():
     safe_reports = 0
     while True:
         try:
-            line = [int(n) for n in input().split(' ')]
+            line = [int(n) for n in input().split(" ")]
 
             safe_reports += int(is_safe(line))
-            print(line, safe_reports, end='\n\n')
+            print(line, safe_reports, end="\n\n")
 
         except EOFError:
             break
 
     print(safe_reports)
+
 
 def is_safe(report: list[int], can_remove=True) -> bool:
     increasing = report[0] < report[1]
@@ -26,7 +27,7 @@ def is_safe(report: list[int], can_remove=True) -> bool:
             for di in (-1, 0, 1):
                 if not (0 <= i + di < len(report)):
                     continue
-                new_input = report[:i + di] + report[i + di + 1:]
+                new_input = report[: i + di] + report[i + di + 1 :]
                 print(new_input)
                 if is_safe(new_input, can_remove=False):
                     return True

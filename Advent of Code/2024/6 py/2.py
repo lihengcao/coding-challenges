@@ -31,6 +31,7 @@ DIRECTIONS = (
     (0, -1),
 )
 
+
 def count_obstacle_candidates(obstacles, start, M, N) -> int:
     patroled = get_patroled(obstacles, start, M, N)
     count = 0
@@ -47,7 +48,9 @@ def count_obstacle_candidates(obstacles, start, M, N) -> int:
     return count
 
 
-def get_patroled(obstacles: set[tuple[int, int]], start: tuple[int, int], M: int, N: int) -> int:
+def get_patroled(
+    obstacles: set[tuple[int, int]], start: tuple[int, int], M: int, N: int
+) -> int:
     visited = set([start])
 
     x, y = start
@@ -59,7 +62,7 @@ def get_patroled(obstacles: set[tuple[int, int]], start: tuple[int, int], M: int
             x, y = x - dx, y - dy
             direction_i = (direction_i + 1) % len(DIRECTIONS)
             continue
-    
+
         visited.add((x, y))
 
         dx, dy = DIRECTIONS[direction_i]
@@ -67,7 +70,10 @@ def get_patroled(obstacles: set[tuple[int, int]], start: tuple[int, int], M: int
 
     return visited
 
-def check_loop(obstacles: set[tuple[int, int]], start: tuple[int, int], M: int, N: int) -> int:
+
+def check_loop(
+    obstacles: set[tuple[int, int]], start: tuple[int, int], M: int, N: int
+) -> int:
     x, y = start
     direction_i = 0
 
